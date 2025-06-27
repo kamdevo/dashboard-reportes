@@ -1,0 +1,3 @@
+[2025-06-25 02:00:55] Error: No se recibió archivo o hubo un error en la subida
+[2025-06-25 02:12:59] Error: No se recibió archivo o hubo un error en la subida
+[2025-06-25 02:13:22] Error: No se recibió archivo o hubo un error en la subida

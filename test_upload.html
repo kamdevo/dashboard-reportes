@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test Upload</title>
+  </head>
+  <body>
+    <h1>Test Upload Reporte</h1>
+    <form id="uploadForm">
+      <div>
+        <label>Título:</label>
+        <input type="text" id="titulo" name="titulo" required />
+      </div>
+      <div>
+        <label>Descripción:</label>
+        <textarea id="descripcion" name="descripcion" required></textarea>
+      </div>
+      <div>
+        <label>Archivo:</label>
+        <input
+          type="file"
+          id="archivo"
+          name="archivo"
+          required
+          accept=".pdf,.xlsx,.xls,.docx,.doc"
+        />
+      </div>
+      <button type="submit">Subir Reporte</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+      document
+        .getElementById("uploadForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const formData = new FormData();
+          formData.append("titulo", document.getElementById("titulo").value);
+          formData.append(
+            "descripcion",
+            document.getElementById("descripcion").value
+          );
+          formData.append(
+            "archivo",
+            document.getElementById("archivo").files[0]
+          );
+          formData.append("usuario_id", "1");
+
+          console.log("Enviando datos:", Array.from(formData.entries()));
+
+          try {
+            const response = await fetch(
+              "http://localhost:8000/api/upload-reporte.php",
+              {
+                method: "POST",
+                body: formData,
+              }
+            );
+
+            const result = await response.json();
+            document.getElementById("result").innerHTML =
+              "<pre>" + JSON.stringify(result, null, 2) + "</pre>";
+            console.log("Resultado:", result);
+          } catch (error) {
+            console.error("Error:", error);
+            document.getElementById("result").innerHTML =
+              '<p style="color: red;">Error: ' + error.message + "</p>";
+          }
+        });
+    </script>
+  </body>
+</html>

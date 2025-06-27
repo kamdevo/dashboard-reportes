@@ -1,0 +1,738 @@
+/* Importar todos los estilos necesarios */
+@import "../src/styles/App.css";
+
+/* Reset y base minimalista */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    sans-serif;
+  line-height: 1.6;
+}
+
+/* Asegurar que los modales funcionen correctamente */
+.modal-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(8px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 9999 !important;
+  padding: 1rem !important;
+  animation: fadeIn 0.2s ease-out !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: white !important;
+  border-radius: 12px !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+  width: 100% !important;
+  max-height: 90vh !important;
+  overflow: hidden !important;
+  animation: slideUp 0.2s ease-out !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(16px) scale(0.98);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%) !important;
+  color: #334155 !important;
+  padding: 1.5rem !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.modal-header h2 {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+}
+
+.modal-close {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: none !important;
+  color: white !important;
+  font-size: 1.25rem !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 6px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+
+.modal-body {
+  padding: 1.5rem !important;
+  overflow-y: auto !important;
+  max-height: calc(90vh - 100px) !important;
+}
+
+/* Grid minimalista para reportes */
+.reportes-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+  gap: 1rem !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.reporte-card {
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  padding: 1.25rem !important;
+  transition: all 0.15s ease !important;
+  position: relative !important;
+}
+
+.reporte-card:hover {
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+  transform: translateY(-1px) !important;
+}
+
+.reporte-header {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 0.75rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.file-icon {
+  font-size: 1.5rem !important;
+  opacity: 0.8 !important;
+}
+
+.reporte-info h3 {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  color: #111827 !important;
+  margin-bottom: 0.25rem !important;
+  line-height: 1.4 !important;
+}
+
+.reporte-description {
+  color: #6b7280 !important;
+  font-size: 0.875rem !important;
+  line-height: 1.4 !important;
+}
+
+.reporte-meta {
+  background: #f9fafb !important;
+  border-radius: 6px !important;
+  padding: 0.75rem !important;
+  margin-bottom: 0.75rem !important;
+  border: 1px solid #f3f4f6 !important;
+}
+
+.meta-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  margin-bottom: 0.25rem !important;
+  font-size: 0.875rem !important;
+}
+
+.meta-row:last-child {
+  margin-bottom: 0 !important;
+}
+
+.meta-label {
+  color: #6b7280 !important;
+  font-weight: 500 !important;
+}
+
+.meta-value {
+  color: #111827 !important;
+  font-weight: 600 !important;
+}
+
+.reporte-stats {
+  display: flex !important;
+  justify-content: space-around !important;
+  padding: 0.5rem !important;
+  background: #f9fafb !important;
+  border-radius: 6px !important;
+  margin-bottom: 0.75rem !important;
+  border: 1px solid #f3f4f6 !important;
+}
+
+.stat {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 0.125rem !important;
+  font-size: 0.75rem !important;
+}
+
+.stat-icon {
+  font-size: 1rem !important;
+}
+
+.reporte-actions {
+  display: flex !important;
+  gap: 0.5rem !important;
+  flex-wrap: wrap !important;
+}
+
+/* Formulario minimalista */
+.form-group {
+  margin-bottom: 1rem !important;
+}
+
+.form-group label {
+  display: block !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  color: #374151 !important;
+  margin-bottom: 0.375rem !important;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100% !important;
+  padding: 0.625rem 0.75rem !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 6px !important;
+  font-size: 0.875rem !important;
+  transition: all 0.15s ease !important;
+  background: #ffffff !important;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none !important;
+  border-color: #0ea5e9 !important;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1) !important;
+}
+
+.form-group input[type="file"] {
+  padding: 0.5rem !important;
+  border: 1px dashed #d1d5db !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+}
+
+.form-group input[type="file"]:hover {
+  border-color: #0ea5e9 !important;
+  background: #f8fafc !important;
+}
+
+.form-actions {
+  display: flex !important;
+  gap: 0.75rem !important;
+  justify-content: flex-end !important;
+  margin-top: 1.5rem !important;
+  padding-top: 1rem !important;
+  border-top: 1px solid #e5e7eb !important;
+}
+
+/* Botones minimalistas */
+.btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.375rem !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 6px !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+  text-decoration: none !important;
+  border: 1px solid transparent !important;
+}
+
+.btn-primary {
+  background: #e0f2fe !important;
+  color: #0284c7 !important;
+  border-color: #bae6fd !important;
+}
+
+.btn-primary:hover {
+  background: #bae6fd !important;
+  border-color: #7dd3fc !important;
+}
+
+.btn-secondary {
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  border-color: #cbd5e1 !important;
+}
+
+.btn-secondary:hover {
+  background: #e2e8f0 !important;
+  border-color: #94a3b8 !important;
+}
+
+.btn-outline {
+  background: white !important;
+  border-color: #d1d5db !important;
+  color: #374151 !important;
+}
+
+.btn-outline:hover {
+  background: #f9fafb !important;
+  border-color: #9ca3af !important;
+}
+
+.btn-sm {
+  padding: 0.375rem 0.75rem !important;
+  font-size: 0.75rem !important;
+}
+
+/* Status badges minimalistas */
+.status-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 4px !important;
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+  border: 1px solid !important;
+}
+
+.status-approved {
+  background: #f0fdf4 !important;
+  color: #166534 !important;
+  border-color: #dcfce7 !important;
+}
+
+.status-pending {
+  background: #fffbeb !important;
+  color: #92400e !important;
+  border-color: #fed7aa !important;
+}
+
+.status-review {
+  background: #f0f9ff !important;
+  color: #0369a1 !important;
+  border-color: #e0f2fe !important;
+}
+
+/* Header simplificado */
+.reportes-header,
+.archivos-header {
+  background: white !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border-bottom: 1px solid #e5e7eb !important;
+  margin-bottom: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+}
+
+.header-content h1 {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 0.25rem !important;
+  color: #111827 !important;
+}
+
+.header-content p {
+  font-size: 0.875rem !important;
+  color: #6b7280 !important;
+  margin: 0 !important;
+}
+
+.header-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  margin-top: 1rem !important;
+}
+
+/* Estilos específicos para la sección de archivos */
+.archivos-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+  gap: 1.5rem !important;
+  padding: 1rem !important;
+  margin-top: 1rem !important;
+}
+
+.archivo-card {
+  background: white !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  padding: 1.5rem !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+  transition: all 0.3s ease-in-out !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.archivo-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  border-color: #10b981 !important;
+}
+
+.archivo-card::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 4px !important;
+  background: linear-gradient(90deg, #10b981, #059669, #047857) !important;
+}
+
+.archivo-header {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.archivo-icon {
+  font-size: 2.5rem !important;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1)) !important;
+}
+
+.archivo-info h3 {
+  font-size: 1.125rem !important;
+  font-weight: 600 !important;
+  color: #1e293b !important;
+  margin-bottom: 0.5rem !important;
+  line-height: 1.4 !important;
+}
+
+.archivo-description {
+  color: #64748b !important;
+  font-size: 0.875rem !important;
+  line-height: 1.5 !important;
+}
+
+.archivo-meta {
+  background: #f0fdf4 !important;
+  border-radius: 8px !important;
+  padding: 1rem !important;
+  margin-bottom: 1rem !important;
+  border: 1px solid #dcfce7 !important;
+}
+
+.archivo-stats {
+  display: flex !important;
+  justify-content: space-around !important;
+  padding: 0.75rem !important;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%) !important;
+  border-radius: 8px !important;
+  margin-bottom: 1rem !important;
+}
+
+.categoria-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 9999px !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.025em !important;
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  color: white !important;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3) !important;
+}
+
+/* Botones específicos para archivos */
+.btn-success {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  color: white !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.3) !important;
+}
+
+.btn-success:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px 0 rgba(16, 185, 129, 0.4) !important;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+  color: white !important;
+  border-color: #ef4444 !important;
+  box-shadow: 0 4px 14px 0 rgba(239, 68, 68, 0.3) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.btn-danger:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px 0 rgba(239, 68, 68, 0.4) !important;
+  background: linear-gradient(135deg, #dc2626, #b91c1c) !important;
+}
+
+.btn-danger:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 4px 14px 0 rgba(239, 68, 68, 0.3) !important;
+}
+
+/* Estilos específicos para el modal de eliminación */
+.delete-confirm {
+  text-align: center !important;
+  padding: 1rem !important;
+}
+
+.warning-icon {
+  font-size: 4rem !important;
+  margin-bottom: 1rem !important;
+  animation: pulse 2s infinite !important;
+}
+
+.delete-confirm h3 {
+  color: #dc2626 !important;
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 1rem !important;
+}
+
+.delete-confirm p {
+  color: #6b7280 !important;
+  margin-bottom: 1.5rem !important;
+  font-size: 1rem !important;
+}
+
+.delete-confirm .reporte-info {
+  background: #fef2f2 !important;
+  border: 1px solid #fecaca !important;
+  border-radius: 8px !important;
+  padding: 1rem !important;
+  margin: 1rem 0 !important;
+}
+
+.delete-confirm .reporte-info strong {
+  color: #dc2626 !important;
+  display: block !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.delete-confirm .reporte-info small {
+  color: #6b7280 !important;
+  font-size: 0.875rem !important;
+}
+
+/* Efectos adicionales para botones en las acciones */
+.reporte-actions .btn,
+.archivo-actions .btn {
+  min-width: 100px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.reporte-actions .btn:hover,
+.archivo-actions .btn:hover {
+  transform: translateY(-2px) scale(1.05) !important;
+}
+
+/* Responsividad mejorada para acciones */
+@media (max-width: 768px) {
+  .reporte-actions,
+  .archivo-actions {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+
+  .reporte-actions .btn,
+  .archivo-actions .btn {
+    width: 100% !important;
+    min-width: auto !important;
+  }
+}
+
+/* Responsive para dispositivos móviles */
+@media (max-width: 768px) {
+  .reportes-grid,
+  .archivos-grid {
+    grid-template-columns: 1fr !important;
+    padding: 0.5rem !important;
+  }
+
+  .modal-content {
+    margin: 0.5rem !important;
+    max-width: calc(100vw - 1rem) !important;
+  }
+
+  .modal-body {
+    padding: 1rem !important;
+  }
+
+  .form-actions {
+    flex-direction: column !important;
+  }
+
+  .btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+/* Estilos específicos para formularios de edición */
+.reporte-form {
+  max-width: 600px !important;
+  margin: 0 auto !important;
+}
+
+.error-message {
+  background: #fef2f2 !important;
+  border: 1px solid #fecaca !important;
+  border-radius: 8px !important;
+  color: #dc2626 !important;
+  padding: 1rem !important;
+  margin-bottom: 1.5rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+}
+
+.error-text {
+  color: #dc2626 !important;
+  font-size: 0.75rem !important;
+  margin-top: 0.25rem !important;
+  display: block !important;
+}
+
+.char-count {
+  color: #6b7280 !important;
+  font-size: 0.75rem !important;
+  margin-top: 0.25rem !important;
+  display: block !important;
+  text-align: right !important;
+}
+
+.form-group input.error,
+.form-group textarea.error {
+  border-color: #dc2626 !important;
+  background: #fef2f2 !important;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1) !important;
+}
+
+.reporte-info-preview {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  padding: 1rem !important;
+  margin: 1.5rem 0 !important;
+}
+
+.reporte-info-preview h4 {
+  color: #374151 !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.025em !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.preview-card {
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 6px !important;
+  padding: 1rem !important;
+}
+
+.preview-card strong {
+  display: block !important;
+  color: #1f2937 !important;
+  font-size: 1rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.preview-card p {
+  color: #6b7280 !important;
+  font-size: 0.875rem !important;
+  margin-bottom: 0.5rem !important;
+  line-height: 1.4 !important;
+}
+
+.spinner {
+  display: inline-block !important;
+  animation: spin 1s linear infinite !important;
+  margin-right: 0.5rem !important;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Mejorar selectores de estado */
+.form-group select {
+  background: white !important;
+  border: 2px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  padding: 0.75rem 1rem !important;
+  font-size: 0.875rem !important;
+  color: #374151 !important;
+  appearance: none !important;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e") !important;
+  background-position: right 0.5rem center !important;
+  background-repeat: no-repeat !important;
+  background-size: 1.5em 1.5em !important;
+  padding-right: 2.5rem !important;
+  transition: all 0.2s ease !important;
+}
+
+.form-group select:focus {
+  outline: none !important;
+  border-color: #0ea5e9 !important;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1) !important;
+}
+
+.form-group select:disabled {
+  background-color: #f9fafb !important;
+  color: #9ca3af !important;
+  cursor: not-allowed !important;
+}
+
+/* Estilos para botones deshabilitados */
+.btn:disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.btn:disabled:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
